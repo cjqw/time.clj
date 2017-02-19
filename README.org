@@ -1,5 +1,5 @@
 * timer
-Timer is a simple application which supports countdown and stopwatch.
+Timer is a simple application which supports count down and count up
 
 ** Installation
 
@@ -9,7 +9,7 @@ git clone https://github.com/cjqw/timer ~/timer
 #+END_SRC
 ** Usage
 
-*** Countdown
+*** Count down
 To make the timer countdown, apply it with a TIME-GAP which indicates how long
 should it count.
 #+BEGIN_SRC
@@ -19,25 +19,25 @@ $ time java -jar target/uberjar/timer-0.1.0-SNAPSHOT-standalone.jar TIME-GAP
 For more details, see the examples.
 **** grammar of time gap
 #+BEGIN_SRC flex
-TIMEGAP = day hour minute second millisecond
-day = int 'd' | epsilon
-hour = int 'h' | epsilon
-minute = int 'm' | epsilon
-second = int 's' | epsilon
-millisecond = int 'ms' | epsilon
-int = #"[0-9]+"
+time-gap = date hour minute second millisecond <whitespace?>
+date = number <whitespace?> <d> | ε
+hour = number <whitespace?> <h> | ε
+minute = number <whitespace?> <m> | ε
+second = number <whitespace?> <s> | ε
+millisecond = number <whitespace?> <ms> | ε
+number = <whitespace?> #"\d+(.\d+)?"
+<whitespace> = #"\s+"
 #+END_SRC
-Whitespace can appear freely between tokens, but can never appear in the center of a integer
-or "ms".
 **** example of time gap
 #+BEGIN_SRC
 1ms
 1d2h3m423s2318ms
 1m 23s
+0.5m 20.3s
 #+END_SRC
-*Attention: if you want to insert Whitespaces into time gap in the command line*,
+*Attention: if you want to insert whitespaces into time gap in the command line*,
 *do not foget to quote the time gap otherwise only the first part will be parsed*
-*** Stopwatch
+*** Count up
 FIXME
 
 ** Others
@@ -46,15 +46,12 @@ FIXME
 - The warm up of JVM takes too much time (more than 1s)
 
 *** Any Other Sections That You Think Might be Useful
-**** DONE Parse the input args
-CLOSED: [2017-02-19 日 20:24]
-:LOGBOOK:
-- State "DONE"       from "NEXT"       [2017-02-19 日 20:24]
-:END:
-**** TODO Parse decimal number
-**** TODO Start time
-**** TODO Progress bar
-**** TODO Stopwatch
+- DONE Parse the input args
+- DONE Parse decimal number
+- TODO Start time
+- TODO Progress bar
+- TODO Stopwatch
+- TODO Deal with exceptions
 ** License
 
 Copyright © 2017 CJQW
