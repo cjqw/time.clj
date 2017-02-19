@@ -17,12 +17,12 @@
   (insta/parser
    (space-concat
     "time-gap = date hour minute second millisecond"
-    "date = int <'d'> | eps"
-    "hour = int <'h'> | eps"
-    "minute = int <'m'> | eps"
-    "second = int <'s'> | eps"
-    "millisecond = int <'ms'> | eps"
-    "int = #\"[0-9]+\"")
+    "date = number <'d'> | eps"
+    "hour = number <'h'> | eps"
+    "minute = number <'m'> | eps"
+    "second = number <'s'> | eps"
+    "millisecond = number <'ms'> | eps"
+    "number = #\"\\d+(.\\d+)?\"")
    :auto-whitespace :standard))
 
 (defn- contain-value?
@@ -33,7 +33,7 @@
 
 (defn- calc-ms
   [k v]
-  (* (Integer. v) (k time-magnification))
+  (java.lang.Math/ceil (* (Double. v) (k time-magnification)))
 )
 
 (defn- calc-ms-v
@@ -45,4 +45,4 @@
 (defn parse
   [s]
   (let [ast (time-parser s)]
-   (reduce + (map calc-ms-v ast))))
+    (reduce + (map calc-ms-v ast))))
