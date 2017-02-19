@@ -6,10 +6,8 @@
 
 (def default-time-gap 1000)
 
-
 (defn- print-exit-message [gap-time]
-  "Print time"
-  (println gap-time "ms")
+  "Print exit massage"
   (println "Time Over"))
 
 (defn- now []
@@ -17,16 +15,28 @@
   (System/currentTimeMillis))
 
 (defn- time-gap
+  "Parse the input into millisecond"
   ([] default-time-gap)
   ([gap & other]
-   (parser/parse gap)
-   ))
+   (parser/parse gap)))
 
-
-(defn -main
-  "Sleep for a while and the print exit message"
-  [& args]
+(defn- countdown
+  "Sleep for a while and then print exit message"
+  [s]
   (let [start-time (now)
-        gap-time (apply time-gap args)]
+        gap-time (apply time-gap s)]
+    (println gap-time "ms")
     (Thread/sleep gap-time)
     (print-exit-message gap-time)))
+
+(defn- zero-args
+  "FIXME"
+  []
+  (println "Please enter the time"))
+
+(defn -main
+  "FIXME"
+  [& args]
+  (if (zero? (count args))
+    (zero-args)
+    (countdown args)))

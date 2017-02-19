@@ -16,7 +16,7 @@
 (def time-parser
   (insta/parser
    (space-concat
-    "s = date hour minute second millisecond"
+    "time-gap = date hour minute second millisecond"
     "date = int <'d'> | eps"
     "hour = int <'h'> | eps"
     "minute = int <'m'> | eps"

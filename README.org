@@ -1,34 +1,63 @@
 * timer
-FIXME:description
+Timer is a simple application which supports countdown and stopwatch.
 
 ** Installation
 
-Download from http://example.com/FIXME.
-
+Download from https://github.com/cjqw/timer
+#+BEGIN_SRC
+git clone https://github.com/cjqw/timer ~/timer
+#+END_SRC
 ** Usage
 
-FIXME: explanation
+*** Countdown
+To make the timer countdown, apply it with a TIME-GAP which indicates how long
+should it count.
+#+BEGIN_SRC
+$ time java -jar target/uberjar/timer-0.1.0-SNAPSHOT-standalone.jar TIME-GAP
+#+END_SRC
 
-    $ java -jar timer-0.1.0-standalone.jar
-
-** Options
-
-FIXME: listing of options this app accepts.
-
-** Examples
-
+For more details, see the examples.
+**** grammar of time gap
+#+BEGIN_SRC flex
+TIMEGAP = day hour minute second millisecond
+day = int 'd' | epsilon
+hour = int 'h' | epsilon
+minute = int 'm' | epsilon
+second = int 's' | epsilon
+millisecond = int 'ms' | epsilon
+int = #"[0-9]+"
+#+END_SRC
+Whitespace can appear freely between tokens, but can never appear in the center of a integer
+or "ms".
+**** example of time gap
+#+BEGIN_SRC
+1ms
+1d2h3m423s2318ms
+1m 23s
+#+END_SRC
+*Attention: if you want to insert Whitespaces into time gap in the command line*,
+*do not foget to quote the time gap otherwise only the first part will be parsed*
+*** Stopwatch
 FIXME
 
+** Others
 *** Bugs
 
-FIXME
+- The warm up of JVM takes too much time (more than 1s)
 
 *** Any Other Sections That You Think Might be Useful
-**** TODO Parse the input args
+**** DONE Parse the input args
+CLOSED: [2017-02-19 日 20:24]
+:LOGBOOK:
+- State "DONE"       from "NEXT"       [2017-02-19 日 20:24]
+:END:
+**** TODO Parse decimal number
+**** TODO Start time
 **** TODO Progress bar
+**** TODO Stopwatch
 ** License
 
-Copyright © 2017 FIXME
+Copyright © 2017 CJQW
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
