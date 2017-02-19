@@ -1,9 +1,11 @@
 (ns timer.core
+  (:require [timer.parser :as parser])
   (:import [java.text SimpleDateFormat]
            [java.io Writer])
   (:gen-class))
 
 (def default-time-gap 1000)
+
 
 (defn- print-exit-message [gap-time]
   "Print time"
@@ -11,14 +13,15 @@
   (println "Time Over"))
 
 (defn- now []
-  "Get current time, in millis"
+  "Get current time, in millisecond"
   (System/currentTimeMillis))
 
 (defn- time-gap
   ([] default-time-gap)
   ([gap & other]
-   (Integer. gap)
+   (parser/parse gap)
    ))
+
 
 (defn -main
   "Sleep for a while and the print exit message"
