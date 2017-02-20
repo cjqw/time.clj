@@ -1,42 +1,42 @@
 (ns timer.core
-  (:require [timer.parser :as parser])
-  (:import [java.text SimpleDateFormat]
-           [java.io Writer])
+  (:require [timer.parser :as parser]
+            [timer.io :as io])
   (:gen-class))
-
-(def default-time-gap 1000)
-
-(defn- print-exit-message [gap-time]
-  "Print exit massage"
-  (println "Time Over"))
 
 (defn- now []
   "Get current time, in millisecond"
   (System/currentTimeMillis))
 
+(def default-count-down-gap 1000)
+(def default-count-up-gap 1000)
+(def start-time (now))
+
 (defn- time-gap
   "Parse the input into millisecond"
-  ([] default-time-gap)
+  ([] default-count-down-gap)
   ([& gap]
    (reduce + (map parser/parse gap))))
 
-(defn- countdown
+(defn- count-down
   "Sleep for a while and then print exit message"
   [s]
   (let [start-time (now)
         gap-time (apply time-gap s)]
-    (println gap-time "ms")
     (Thread/sleep gap-time)
-    (print-exit-message gap-time)))
+    (io/print-exit-message gap-time)))
 
-(defn- zero-args
-  "FIXME"
+(defn- count-up
+  "When no args passed, the timer works as a stop watch. Print a hint message every default-count-up-gap"
   []
-  (println "Please enter the time"))
+  (Thread/sleep default-count-up-gap)
+  (io/print-hint-message (- (now) start-time))
+  (count-up)
+  )
 
 (defn -main
-  "FIXME"
+  "The entrance of the timer. If no args passed to the timer, it will work as a count-up, otherwise it will work as a count-down."
   [& args]
+  (io/print-start-message)
   (if (zero? (count args))
-    (zero-args)
-    (countdown args)))
+    (count-up)
+    (count-down args)))

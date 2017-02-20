@@ -42,13 +42,14 @@ FIXME
 *** Bugs
 
 - The warm up of JVM takes too much time (more than 1s)
+- The timer will show multiple hint messages if the user press enter when counting up
 
 *** Any Other Sections That You Think Might be Useful
 - DONE Parse the input args
 - DONE Parse decimal number
 - TODO Start time
 - TODO Progress bar
-- TODO Stopwatch
+- DONE Count up
 - TODO Deal with exceptions
 - TODO Test
 ** License
