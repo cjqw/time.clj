@@ -36,8 +36,10 @@ number = <whitespace?> #"\d+(.\d+)?"
 0.5m 20.3s
 #+END_SRC
 *** Count up
-FIXME
-
+To make a count-up, call the timer without any args.
+#+BEGIN_SRC
+$ time java -jar target/uberjar/timer-0.1.0-SNAPSHOT-standalone.jar
+#+END_SRC
 ** Others
 *** Bugs
 
@@ -47,8 +49,8 @@ FIXME
 *** Any Other Sections That You Think Might be Useful
 - DONE Parse the input args
 - DONE Parse decimal number
-- TODO Start time
-- TODO Progress bar
+- DONE Start time
+- DONE Progress bar
 - DONE Count up
 - TODO Deal with exceptions
 - TODO Test

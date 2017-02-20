@@ -51,7 +51,7 @@
 
 (defn- calc-ms
   [k v]
-  (java.lang.Math/ceil (* (Double. v) (k time-magnification)))
+  (.intValue (* (Double. v) (k time-magnification)))
 )
 
 (defn- calc-ms-v
