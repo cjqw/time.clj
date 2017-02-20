@@ -17,8 +17,8 @@
 (defn- time-gap
   "Parse the input into millisecond"
   ([] default-time-gap)
-  ([gap & other]
-   (parser/parse gap)))
+  ([& gap]
+   (reduce + (map parser/parse gap))))
 
 (defn- countdown
   "Sleep for a while and then print exit message"

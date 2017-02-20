@@ -35,8 +35,6 @@ number = <whitespace?> #"\d+(.\d+)?"
 1m 23s
 0.5m 20.3s
 #+END_SRC
-*Attention: if you want to insert whitespaces into time gap in the command line*,
-*do not foget to quote the time gap otherwise only the first part will be parsed*
 *** Count up
 FIXME
 
@@ -52,6 +50,7 @@ FIXME
 - TODO Progress bar
 - TODO Stopwatch
 - TODO Deal with exceptions
+- TODO Test
 ** License
 
 Copyright © 2017 CJQW
