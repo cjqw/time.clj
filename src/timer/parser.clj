@@ -27,6 +27,7 @@
           )))
 
 (defn- space-concat
+  "Join the strings with separate whitespaces."
   [& s]
   (reduce #(str %1 " " %2) s))
 
@@ -62,7 +63,11 @@
     0))
 
 (defn parse
-  "Parse the input args into millisecond"
+  "Parse the input args into millisecond, the return value is
+  [result, errmsg]."
   [s]
   (let [ast (time-parser s)]
-    (reduce + (map calc-ms-v ast))))
+    (if (= (first ast) :time-gap)
+      [(reduce + (map calc-ms-v ast)) nil]
+      [nil (str "Wrong arguments: " s "\n" (apply str ast))])
+    ))

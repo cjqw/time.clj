@@ -52,11 +52,11 @@ $ time java -jar target/uberjar/timer-0.1.0-SNAPSHOT-standalone.jar
 - DONE Start time
 - DONE Progress bar
 - DONE Count up
-- TODO Deal with exceptions
+- DONE Deal with exceptions
 - TODO Test
 ** License
 
-Copyright © 2017 CJQW
+Copyright © 2017 cjqw
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.

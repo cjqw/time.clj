@@ -6,9 +6,11 @@
   "Print start massage"
   (println "The timer start to work"))
 
-(defn print-exit-message [gap-time]
+(defn print-exit-message [[time-gap errmsg]]
   "Print exit massage"
-  (println "Time Over"))
+  (if (nil? errmsg)
+    (println "Time Over")
+    (println "An error occured:\n" errmsg)))
 
 (defn print-hint-message [t]
   "Print hint message of count up."
@@ -17,12 +19,14 @@
   )
 
 (defn- progress-bar [percentage]
+  "Print progress bar like [====      ]"
   (str "["
        (apply str (take percentage (repeat "=")))
        (apply str (take (- 10 percentage) (repeat " ")))
        "]"))
 
 (defn- print-bar [percentage t]
+  "Print progress bar and the time remained."
   (print (str (progress-bar percentage) " "
               (parser/st t) "\r"))
   (flush))
@@ -34,5 +38,5 @@
         percentage (quot (* 10 millisecond) gap-time)]
     (if (> 10 percentage)
       (do (print-bar percentage millisecond)
-          (print-progress-bar start-time gap-time))
+          (recur start-time gap-time))
       )))
