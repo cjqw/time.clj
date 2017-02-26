@@ -9,7 +9,7 @@
 (defn print-exit-message [[time-gap errmsg]]
   "Print exit massage"
   (if (nil? errmsg)
-    (println "Time Over")
+    (println "Time Over\n")
     (println "An error occured:\n" errmsg)))
 
 (defn print-hint-message [t]

@@ -46,13 +46,13 @@ $ time java -jar target/uberjar/timer-0.1.0-SNAPSHOT-standalone.jar
 - The warm up of JVM takes too much time (more than 1s)
 - The timer will show multiple hint messages if the user press enter when counting up
 
-*** Any Other Sections That You Think Might be Useful
+*** Tasks
 - DONE Parse the input args
 - DONE Parse decimal number
 - DONE Start time
 - DONE Progress bar
 - DONE Count up
-- DONE Deal with exceptions
+- DONE Deal with wrong arguments
 - TODO Test
 ** License
 
